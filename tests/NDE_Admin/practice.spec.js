@@ -1,5 +1,6 @@
 const {test,expect}=require("@playwright/test")
-const { login } = require("./login.spec")
+const{login}=require("../utils/login")
+
 test("practice",async ({ page })=>{
    await login(page)
    const cname="Guna guna"
