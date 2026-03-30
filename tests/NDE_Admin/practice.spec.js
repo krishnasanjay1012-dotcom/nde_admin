@@ -1,5 +1,5 @@
 const {test,expect}=require("@playwright/test")
-const{login}=require("../utils/login")
+const{login}=require("../utils/login.spec")
 
 test("practice",async ({ page })=>{
    await login(page)
