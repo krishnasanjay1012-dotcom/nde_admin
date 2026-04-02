@@ -1,5 +1,5 @@
 const {test,expect}=require("@playwright/test")
-test.setTimeout(5 * 60 * 1000)
+test.setTimeout(5 * 30 * 1000)
 
 test("practice",async ({ page })=>{
 //    await page.goto("https://practicetestautomation.com/practice-test-login/")
