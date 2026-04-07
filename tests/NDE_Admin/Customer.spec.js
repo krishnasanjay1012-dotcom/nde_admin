@@ -154,7 +154,7 @@ if (isVisible) {
    console.log("Expected contact deleted")
 }
  else {
-  console.log("Expected contact not visible")
+  console.log("Expect contact not visible")
 }
 
 
