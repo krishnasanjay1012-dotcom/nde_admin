@@ -137,29 +137,35 @@ async function Contactcreate(page,i){
 }
 
 async function Expectedcontactdelete(page) {
-    const ecname="Bala"
-     await page.getByRole("button",{name:"Customers"}).click()
-     await page.getByRole('combobox', { name: 'Rows per page:' }).click()
-     await page.getByRole('option', { name: '100' }).click()
-     await page.waitForTimeout(3000)
-     const ecdrow = page.locator("tr").filter({has: page.locator("td").filter({ hasText: ecname })}).first()
-     await ecdrow.scrollIntoViewIfNeeded()
-    const isVisible = await ecdrow.isVisible()
+  const ecname = "Bala"
 
-if (isVisible) {
-  await ecdrow.hover()
-  await ecdrow.locator('button').last().click()
+  await page.getByRole("button",{name:"Customers"}).click()
+  await page.getByRole('combobox', { name: 'Rows per page:' }).click()
+  await page.getByRole('option', { name: '100' }).click()
+
+  const row = page.locator("tr", {
+    has: page.locator("td").filter({ hasText: ecname })
+  }).first()
+
+  await expect(row).toBeVisible()
+
+  await row.scrollIntoViewIfNeeded()
+
+  // ❌ hover remove
+  await row.locator('button').last().click({ force: true })
+
   await page.getByRole("menuitem",{name:"Delete"}).click()
   await page.getByRole("button",{name:"Delete"}).click()
-   console.log("Expected contact deleted")
-}
- else {
-  console.log("Expect contact ")
+
+  // 🔥 REAL VALIDATION
+  await expect(row).toHaveCount(0)
+
+  console.log("Contact actually deleted")
 }
 
 
   
-}
+
 
 }
 )
