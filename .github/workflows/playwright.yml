@@ -18,14 +18,10 @@ jobs:
           node-version: 18
 
       - name: Install dependencies
-        run: npm install   
+        run: npm install
 
-      - name: Install Chromium only
+      - name: Install Playwright browsers
         run: npx playwright install chromium --with-deps
 
       - name: Run Test
-<<<<<<< HEAD
         run: npx playwright test login.spec.js --project=chromium
-=======
-        run: npx playwright test Customer.spec.js --project=chromium
->>>>>>> f969f3762ca57a9972f4f07079f5631dbaf6493e
