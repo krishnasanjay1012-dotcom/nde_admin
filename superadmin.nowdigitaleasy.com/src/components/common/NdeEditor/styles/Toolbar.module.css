@@ -1,0 +1,108 @@
+.squire-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 10px;
+  background: var(--Editor-toolbar-bg, #f9fafb);
+  border-bottom: 1px solid var(--Editor-toolbar-border-color, #e5e7eb);
+  overflow: hidden;
+    max-height: 60px;
+}
+.squire-toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+min-width: "200px";
+  flex: 1;
+  min-width: 0;     
+  overflow: hidden;    
+  white-space: nowrap;
+}
+
+.squire-toolbar-item {
+  flex-shrink: 0;
+  display: inline-flex;
+}
+
+.squire-toolbar-right {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.squire-more-wrapper {
+  margin-left: auto;
+  position: relative;
+}
+
+.squire-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+ max-height: 50px;
+  padding: 0 7px;
+  height: var(--Editor-btn-size, 40px);
+  min-width: var(--Editor-btn-size, 38px);
+  border-radius: var(--Editor-Editor-btn-radius, 10px);
+  background: var(--Editor-btn-bg, #ffffff);
+  border: 1px solid var(--Editor-btn-border-color, #d0d5dd);
+  font-size: 13px;
+  font-weight: 500;
+  color: #111827;
+
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.15s ease;
+}
+
+/* Hover */
+.squire-btn:hover:not(:disabled) {
+  background: var(--Editor-btn-hover-bg, #f3f4f6);
+  border-color: var(--Editor-btn-hover-border-color, #cbd5e1);
+}
+
+/* Active pressed (mouse down) */
+.squire-btn:active:not(:disabled) {
+  transform: scale(0.97);
+  background: #e5e7eb;
+}
+
+/* Toolbar active state (bold, italic etc) */
+.squire-btn[aria-pressed="true"] {
+  background: #eef2ff;
+  border-color: #c8c8d1;
+  color: #cfced6;
+}
+/* Focus */
+.squire-btn:focus-visible {
+  outline: none;
+  border-color: #dbdaef;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+}
+
+/* Disabled */
+.squire-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+}
+.squire-btn-icon {
+  width: var(--Editor-icon-size, 30px);
+  height: var(--Editor-icon-size, 30px);
+  object-fit: contain;
+  display: block;
+}
+
+@media (max-width: 600px) {
+  .squire-toolbar {
+    gap: 4px;
+    padding: 8px;
+  }
+
+  .squire-btn {
+    height: 34px;
+    min-width: 34px;
+    padding: 4px 8px;
+  }
+}

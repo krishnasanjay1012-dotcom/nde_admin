@@ -1,0 +1,226 @@
+.ndepopup {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.innerPopup {
+  padding: 5px;
+   min-width: 300px;
+   max-width: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.popupSection {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.popupLabel {
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+}
+.popupTitle {
+  font-size: 14px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 10px;
+}
+
+.popupInput {
+  height: 38px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  padding: 0 12px;
+  font-size: 13px;
+  outline: none;
+  margin-bottom: 10px;
+  transition: 0.2s ease;
+}
+
+.popupInput:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.18);
+}
+
+.popupActions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 6px;
+}
+
+.popupBtn {
+  height: 34px;
+  padding: 0 14px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.popupBtn:hover {
+  background: #f3f4f6;
+}
+
+.popupBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Insert button look */
+.popupActions button:first-child {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: white;
+}
+
+.popupActions button:first-child:hover {
+  background: #1d4ed8;
+}
+
+/* Make URL insert button primary */
+.popupSection button {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: white;
+}
+
+.popupSection button:hover {
+  background: #1d4ed8;
+}
+
+.popupSection button:disabled {
+  background: #93c5fd;
+  border-color: #93c5fd;
+}
+
+.popupDivider {
+  height: 1px;
+  background: #e5e7eb;
+  margin: 14px 0;
+}
+
+/* 🔥 File input neat styling */
+.popupFile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.fileInput {
+  display: none;
+}
+
+.fileBtn {
+  height: 34px;
+  padding: 0 14px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.fileBtn:hover {
+  background: #f3f4f6;
+}
+
+.fileName {
+  font-size: 12px;
+  color: #6b7280;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 200px;
+}
+
+.customRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.customActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Color picker */
+.colorInput {
+  width: 30px;
+  height: 30px;
+  border: none;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.colorInput::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.colorInput::-webkit-color-swatch {
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+}
+
+/* OK button small */
+.okBtn {
+  height: 32px;
+  padding: 0 12px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px solid #d1d5db;
+  background: #2563eb;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.okBtn:hover {
+  background: #1d4ed8;
+}
+
+.fileBtn {
+  height: 34px;
+  padding: 0 14px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  cursor: pointer;
+  transition: 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+}
+
+.fileBtn:hover {
+  background: #f3f4f6;
+}
+
+.fileRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.fileInput {
+  display: none;
+}

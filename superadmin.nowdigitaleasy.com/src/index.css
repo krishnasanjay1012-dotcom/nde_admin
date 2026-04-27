@@ -1,0 +1,130 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+
+::selection {
+  background-color: #2330e7;
+  color: white;
+}
+
+::-moz-selection {
+  background-color: #2330e7;
+  color: white;
+}
+.toast-success {
+  background-color: #e6f9f0 !important;
+  border: 1px solid #27ae60 !important;
+  color: #1e8449 !important;
+}
+
+.toast-error {
+  background-color: #fdecea !important;
+  border: 1px solid #e74c3c !important;
+  color: #c0392b !important;
+}
+
+.toast-default {
+  background-color: #f9f9f9 !important;
+  border: 1px solid #ddd !important;
+  color: #333 !important;
+}
+
+.ck-editor__editable_inline {
+  min-height: 200px;
+  overflow-y: auto;
+}
+
+.tox-statusbar {
+  display: none !important;
+}
+
+.tox-promotion {
+  display: none !important;
+}
+
+.menubar {
+  display: none !important;
+}
+
+.rdw-editor-toolbar {
+  z-index: 9 !important;
+}
+
+.rdw-option-wrapper {
+  z-index: 9 !important;
+}
+
+/* Main wrapper */
+.queryBuilder {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+/* Rule group container */
+.queryBuilder .ruleGroup {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Group header (AND / OR row + buttons container) */
+.queryBuilder .ruleGroup-header {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  margin-bottom: 8px !important;
+}
+
+/* Individual rule */
+.queryBuilder .rule {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin-bottom: 8px !important;
+}
+
+/* Remove default button styles */
+.queryBuilder button {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Remove default select & input styling (if any leaking) */
+.queryBuilder select,
+.queryBuilder input {
+  background: transparent !important;
+  border: none !important;
+}
+
+img {
+  pointer-events: auto;
+  user-drag: none;
+  -webkit-user-drag: none;
+}
+
+img:active {
+  pointer-events: none;
+}
+/* Recharts: remove all focus outlines (wrapper + svg + inner nodes) */
+.recharts-wrapper:focus,
+.recharts-wrapper:focus-visible,
+.recharts-surface:focus,
+.recharts-surface:focus-visible,
+.recharts-wrapper *:focus,
+.recharts-wrapper *:focus-visible {
+  outline: none !important;
+}
+
+/* Prevent mobile tap highlight */
+.recharts-wrapper {
+  -webkit-tap-highlight-color: transparent;
+}

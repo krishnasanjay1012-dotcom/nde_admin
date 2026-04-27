@@ -1,0 +1,99 @@
+# include:
+#   - template: Jobs/SAST.gitlab-ci.yml
+#   - template: Jobs/Secret-Detection.gitlab-ci.yml
+
+# stages:
+#   - test      # <--- ADD THIS to fix the "stage does not exist" error
+#   - build
+#   - deploy
+
+# variables:
+#   SERVER_IP: "165.101.157.62"
+#   SERVER_USER: "iaaxin"
+#   DEPLOY_PATH: "/www/wwwroot/superadmin.nowdigitaleasy.com"
+#   DOMAIN: "superadmin.nowdigitaleasy.com"
+# ================================
+# TEST STAGE (Playwright)
+# ================================
+playwright-job:
+  stage: test
+  image: mcr.microsoft.com/playwright:v1.44.0-jammy
+  tags: 
+  - superadmin
+  script:
+    - npm ci --legacy-peer-deps
+    # Ensures the necessary browser binaries are installed in the container
+    - npx playwright install chromium --with-deps
+    - npx playwright test login.spec.js --project=chromium
+  artifacts:
+    when: always
+    paths:
+      - playwright-report/
+      - test-results/
+    expire_in: 1 week
+
+# ================================
+# BUILD STAGE (Generates .env and Build)
+# ================================
+# build:
+#   stage: build
+#   image: node:20
+#   tags:
+#     - superadmin
+#   script:
+#     - set -e
+#     # --- AUDIT LOG ---
+#     - echo "AUDIT:[$(date)] User $GITLAB_USER_NAME pushed code to $CI_COMMIT_BRANCH"
+#     - echo "AUDIT:Pipeline $CI_PIPELINE_ID started on Runner $CI_RUNNER_ID"
+    
+#     # Generate .env file
+#     - echo "DB_PASSWORD=$DB_PASSWORD" >> .env
+#     - echo "API_KEY=$CI_JOB_TOKEN" >> .env
+#     - echo "BUILD_VERSION=$CI_PIPELINE_IID" >> .env
+#     - echo "DEPLOYED_AT=$(date)" >> .env
+    
+#     - npm ci --legacy-peer-deps
+#     - npm run build
+#     - test -f dist/index.html
+#   artifacts:
+#     paths:
+#       - dist/
+#       - .env
+#     expire_in: 1 hour
+
+# ================================
+# DEPLOY STAGE (aaPanel Sync)
+# ================================
+# deploy:
+#   stage: deploy
+#   image: alpine:latest
+#   tags:
+#     - superadmin
+#   dependencies:
+#     - build
+#   before_script:
+#     - apk add --no-cache openssh-client rsync bash
+#     - eval "$(ssh-agent -s)"
+#     - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+#     - mkdir -p ~/.ssh
+#     - chmod 700 ~/.ssh
+#     - ssh-keyscan -p 22022 -H $SERVER_IP >> ~/.ssh/known_hosts
+#   script:
+#     - set -e
+#     - echo "AUDIT:[$(date)] Deploying as $SERVER_USER"
+    
+#     # RSYNC EXPLAINED:
+#     # -rlz: Recursive, links, compressed
+#     # --delete: Automatically removes old build files (no need for 'rm -rf')
+#     # --exclude: Skips the locked aaPanel system files
+#     - >
+#       rsync -e "ssh -p 22022" -rlz --delete
+#       --exclude '.user.ini'
+#       --exclude '.htaccess'
+#       dist/ .env $SERVER_USER@$SERVER_IP:$DEPLOY_PATH/
+      
+#     - echo "AUDIT:[$(date)] Deployment Successful"
+#   only:
+#     - main
+
+    

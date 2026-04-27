@@ -1,0 +1,16 @@
+export const typography = {
+  fontFamily: "Roboto, Arial, sans-serif",
+  caption: { fontSize: "11px", fontWeight: 400, lineHeight: 1.5 },
+  overline: { fontSize: "11px", fontWeight: 500, letterSpacing: "0.5px", lineHeight: 2.25, textTransform: "uppercase" },
+  h1: { fontWeight: 500, fontSize: "32px", lineHeight: "40px" },
+  h2: { fontWeight: 500, fontSize: "28px", lineHeight: "32px" },
+  h3: { fontWeight: 500, fontSize: "22px", lineHeight: "26px" },
+  h4: { fontWeight: 500, fontSize: "19px", lineHeight: "24px" },
+  h5: { fontWeight: 500, fontSize: "16px", lineHeight: "24px" },
+  h6: { fontWeight: 500, fontSize: "15px", lineHeight: "18px" },
+  button: { textTransform: "capitalize", fontWeight: 400 },
+  body1: { fontSize: "13px", fontWeight: 400, lineHeight: "20px" },
+  body2: { fontSize: "11px", letterSpacing: "0px", fontWeight: 500, lineHeight: "15px" },
+  subtitle1: { fontSize: "13px", fontWeight: 600, color: "#9f9f9f" },
+  subtitle2: { fontSize: "13px", fontWeight: 400 },
+};
