@@ -19,5 +19,4 @@ console.log("login passed ✅")
 console.log("Username :"+" "+username)
 console.log("Password :"+" "+password)
 console.log("==================================================================")
-await page.waitForTimeout(7000)
 }
