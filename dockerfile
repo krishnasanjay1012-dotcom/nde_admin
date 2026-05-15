@@ -41,6 +41,6 @@ RUN npx playwright install chromium
 
 COPY . .
 
-CMD ["npx", "playwright", "test", "login.spec.js", "--project=chromium"]
+CMD ["npx", "playwright", "test", "practice.spec.js", "--project=chromium"]
 
 
