@@ -11,26 +11,36 @@
 # CMD ["npx", "playwright", "test", "login.spec.js", "--project=chromium"]
 
 
-# Base image
 FROM node:18
 
-# Work directory inside container
 WORKDIR /app
 
-# Copy package files first (for caching)
+RUN apt-get update && apt-get install -y \
+    libnspr4 \
+    libnss3 \
+    libatk-bridge2.0-0 \
+    libatk1.0-0 \
+    libgbm-dev \
+    libgtk-3-0 \
+    libasound2 \
+    libx11-xcb1 \
+    libxcomposite1 \
+    libxdamage1 \
+    libxrandr2 \
+    libxshmfence1 \
+    libdrm2 \
+    && rm -rf /var/lib/apt/lists/*
+
 COPY package*.json ./
 
-# Install dependencies
+ENV PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1
+
 RUN npm ci
 
-# Install Playwright browsers + dependencies
-RUN npx playwright install --with-deps
+RUN npx playwright install chromium
 
-# Copy full project
 COPY . .
 
-# Default command to run tests
 CMD ["npx", "playwright", "test", "login.spec.js", "--project=chromium"]
-
 
 

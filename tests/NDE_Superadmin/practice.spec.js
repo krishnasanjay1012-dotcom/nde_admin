@@ -1,37 +1,62 @@
 import { test, expect } from "@playwright/test";
+test.setTimeout(5 * 30 * 1000)
 
-test("Amazon Laptop Search and Handle New Tab", async ({ page, context }) => {
+test("NDE Login", async ({ page, context }) => {
 
-  // Open Amazon
-  await page.goto("https://www.amazon.in/");
+  await page.goto("https://superadmin.nowdigitaleasy.com/login")
 
-  // Search laptop
-  await page.locator('[name="field-keywords"]').fill("laptop");
-  await page.keyboard.press("Enter");
+  const invalidename="invalid"
+  const validpassword="King_Guna"
+  await page.locator('[name="userName"]').fill(invalidename)
+  await page.locator('[name="password"]').fill(validpassword)
+  await page.getByRole("button",{name:"Login"}).click()
+  await expect(page).toHaveURL("https://superadmin.nowdigitaleasy.com/login")
+  console.log("invalid username case passed")
+     console.log("==========================================================")
+  
+  const validename="iaaxin"
+  const invalidpassword="invalid"
+  await page.locator('[name="userName"]').fill(validename)
+  await page.locator('[name="password"]').fill(invalidpassword)
+  await page.getByRole("button",{name:"Login"}).click()
+  await expect(page).toHaveURL("https://superadmin.nowdigitaleasy.com/login")
+  console.log("invalid password case passed")
+    console.log("==========================================================")
 
-  // Wait and click product (opens new tab)
-  const [newPage] = await Promise.all([
-    context.waitForEvent("page"),
-    page.getByText("M3407KA-SF049WS").click()
-  ]);
+  await page.locator('[name="userName"]').fill(validename)
+  await page.locator('[name="password"]').fill(validpassword)
+  await page.getByRole("button",{name:"Login"}).click()
+  await expect(page).toHaveURL("https://superadmin.nowdigitaleasy.com/home")
+  console.log("valid username & password case passed")
+    console.log("==========================================================")
 
-  // Wait for new tab to load
-  await page.waitForTimeout(5000)
+    console.log("Module Visibility 👇")
+     await page.waitForTimeout(5000)
+     const modulepage=page.locator('[class="MuiList-root MuiList-padding css-cyvzt1"]')
+     const row=modulepage.locator("div span")
+     const modulecount=await row.count()
+     for(let i = 0;i < modulecount; i++){
+      const module=await row.nth(i).first().innerText()
+      console.log(module)
+     }
+     console.log(`Total Module : ${modulecount} ✅`)
+     console.log("==========================================================")
 
-  // Do something in new tab (example)
-  console.log("New tab opened");
-  await newPage.waitForTimeout(3000);
+    console.log("Available Products 👇")
+    await page.getByRole("button",{name:"Product",exact:true}).click()
+    await page.waitForTimeout(5000)
+    const Productsrow=page.locator("tbody tr")
+    const Productscount=await Productsrow.count()
+    for(let i = 0 ; i < Productscount; i++ ){
+      const productName=await Productsrow.nth(i).locator("p").first().textContent()
+      console.log(productName)
+    }
+    console.log(`Total products : ${Productscount} ✅`)
+    console.log("==========================================================")
 
-  // Close new tab
-  await newPage.close();
-  console.log("New tab closed");
 
-  // Back to old page (search results page)
-  await page.bringToFront();
 
-  // Verify we are back
-  await expect(page).toHaveURL(/amazon/);
 
-  console.log("Returned to main page successfully");
+
 
 });
