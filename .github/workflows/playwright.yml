@@ -1,32 +1,4 @@
-name: Playwright Login Test
-
-on:
-  push:
-    branches: [ main ]
-
-jobs:
-  test:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Install Playwright browsers
-        run: npx playwright install chromium --with-deps
-
-      - name: Run Test
-        run: npx playwright test practice.spec.js --project=chromium
-
-# name: Playwright Docker CI
+# name: Playwright Login Test
 
 # on:
 #   push:
@@ -40,11 +12,39 @@ jobs:
 #       - name: Checkout code
 #         uses: actions/checkout@v4
 
-#       - name: Setup Docker
-#         uses: docker/setup-buildx-action@v3
+#       - name: Setup Node.js
+#         uses: actions/setup-node@v4
+#         with:
+#           node-version: 18
 
-#       - name: Build Docker image
-#         run: docker build -t playwright-tests .
+#       - name: Install dependencies
+#         run: npm install
 
-#       - name: Run tests in Docker
-#         run: docker run --rm playwright-tests
+#       - name: Install Playwright browsers
+#         run: npx playwright install chromium --with-deps
+
+#       - name: Run Test
+#         run: npx playwright test practice.spec.js --project=chromium
+
+name: Playwright Docker CI
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Docker
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker image
+        run: docker build -t playwright-tests .
+
+      - name: Run tests in Docker
+        run: docker run --rm playwright-tests
